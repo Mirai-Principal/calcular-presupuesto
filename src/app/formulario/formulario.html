@@ -1,21 +1,28 @@
 <!-- Componente: Formulario -->
 <div class="row justify-content-center mt-4">
     <div class="col-md-8">
-        <form class="row g-2">
+        <form class="row g-2" (ngSubmit)="agregarIngreso(form)" #form="ngForm">
             <div class="col-auto">
-                <select class="form-select bg-success">
+                <select (change)="tipoOperacion($event)" class="form-select"
+                    [ngClass]="{ 'bg-danger': operacion() === 'egresoOperacion', 'bg-success': operacion() === 'ingresoOperacion' }">
                     <option value="ingresoOperacion" selected>+</option>
                     <option value="egresoOperacion">-</option>
                 </select>
             </div>
             <div class="col">
-                <input type="text" class="form-control border-success" placeholder="Descripción" required />
+                <input type="text" class="form-control border-success" placeholder="Descripción" required
+                    [ngClass]="{ 'bg-danger': operacion() === 'egresoOperacion', 'bg-success': operacion() === 'ingresoOperacion' }"
+                    [(ngModel)]="descripcion" name="descripcion" />
             </div>
             <div class="col-auto">
-                <input type="number" class="form-control border-success" placeholder="Valor" required />
+                <input type="number" class="form-control border-success" placeholder="Valor" required
+                    [ngClass]="{ 'bg-danger': operacion() === 'egresoOperacion', 'bg-success': operacion() === 'ingresoOperacion' }"
+                    [(ngModel)]="monto" name="monto" />
             </div>
             <div class="col-auto">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn"
+                    [ngClass]="{ 'bg-danger': operacion() === 'egresoOperacion', 'bg-success': operacion() === 'ingresoOperacion' }"
+                    [disabled]="form.invalid">
                     <i class="bi bi-check-circle"></i> <!-- Bootstrap Icon -->
                 </button>
             </div>
