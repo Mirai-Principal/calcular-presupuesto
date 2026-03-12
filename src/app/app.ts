@@ -1,5 +1,4 @@
 import { Component, computed, Signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { Cabecera } from "./cabecera/cabecera";
 import { Formulario } from "./formulario/formulario";
 import { Ingreso as ingresoComponent } from "./ingreso/ingreso";
@@ -11,7 +10,7 @@ import { EgresoService } from "./egreso/egreso.service";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Cabecera, Formulario, ingresoComponent, egresoComponent],
+  imports: [Cabecera, Formulario, ingresoComponent, egresoComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

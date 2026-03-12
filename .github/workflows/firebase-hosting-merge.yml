@@ -12,11 +12,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with: 
+          node-version: '24'
+          cache: npm
+
       - name: Install Dependencies
         run: npm install
 
-      - run: npm run build --configuration=production --aot
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Build Angular App
+        run: npm run build --configuration production --aot
+  
+      # Desplegar a Firebase
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{
